@@ -3,7 +3,7 @@ name: Check HA config
 on:
   push:
   pull_request:
-  
+
 jobs:
   yamllint:
     name: 🧹 Lint YAML files
