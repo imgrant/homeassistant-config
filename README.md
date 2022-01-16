@@ -1,4 +1,3 @@
 # 🏡 Configuration for Home Assistant
 
-[![GitHub Actions][actions-shield]][actions]
-[![GitHub Last Commit][last-commit-shield]][commits]
+![check-config](https://github.com/imgrant/homeassistant-config/actions/workflows/main.yml/badge.svg)
