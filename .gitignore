@@ -6,6 +6,7 @@
 !*.yaml
 !.gitignore
 !*.md
+!.HA_VERSION
 
 # Ignore folders.
 .storage
