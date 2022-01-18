@@ -15,22 +15,22 @@
   action:
     - choose:
         - conditions:
-          - condition: zone
-            entity_id: person.ian
-            zone: zone.home
+            - condition: zone
+              entity_id: person.ian
+              zone: zone.home
           sequence:
-          - service: notify.mobile_app_ian_s_pixel_6
-            data:
-              message: "There’s someone at the door"
-              title: Knock knock!
+            - service: notify.mobile_app_ian_s_pixel_6
               data:
-                group: knock-knock
-                tag: front-door-knock-sensor-triggered
-                channel: Knock-knock
-                importance: high
-                priority: high
-                timeout: 300
-                ttl: 0
+                message: "There’s someone at the door"
+                title: Knock knock!
+                data:
+                  group: knock-knock
+                  tag: front-door-knock-sensor-triggered
+                  channel: Knock-knock
+                  importance: high
+                  priority: high
+                  timeout: 300
+                  ttl: 0
       default: []
     - service: notify.html5notifier
       data:
