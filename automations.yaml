@@ -1,2 +1,60 @@
 ---
-[]
+- id: front_door_knock_alert
+  alias: "Front door knock alert"
+  description: Send a mobile notification when there's a knock at the front door
+  trigger:
+    - type: vibration
+      platform: device
+      device_id: 81e4796fa22469337eea2584075b75ef
+      entity_id: binary_sensor.front_door_knock_sensor_ias_zone
+      domain: binary_sensor
+  condition:
+    - condition: time
+      after: '06:00'
+      before: '22:00'
+  action:
+    - choose:
+        - conditions:
+            - condition: zone
+              entity_id: person.ian
+              zone: zone.home
+          sequence:
+            - service: notify.mobile_app_ian_s_pixel_6
+              data:
+                message: "There’s someone at the door"
+                title: Knock knock!
+                data:
+                  group: knock-knock
+                  tag: front-door-knock-sensor-triggered
+                  channel: Knock-knock
+                  importance: high
+                  priority: high
+                  timeout: 300
+                  ttl: 0
+      default: []
+    - service: notify.html5notifier
+      data:
+        message: "There’s someone at the door"
+        title: Knock knock!
+        data:
+          tag: front-door-knock-sensor-triggered
+          priority: high
+          ttl: 180
+    - delay:
+        hours: 0
+        minutes: 3
+        seconds: 0
+        milliseconds: 0
+    - service: notify.mobile_app_ian_s_pixel_6
+      data:
+        title: ''
+        message: clear_notification
+        data:
+          group: knock-knock
+          tag: front-door-knock-sensor-triggered
+          channel: Knock-knock
+    - service: html5.dismiss
+      data:
+        data:
+          tag: front-door-knock-sensor-triggered
+  mode: single
