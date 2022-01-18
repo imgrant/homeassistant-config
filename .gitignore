@@ -5,6 +5,7 @@
 # Whitelist files/folders with !, these will not be ignored.
 !*.yaml
 !.gitignore
+!.github
 !*.md
 !.HA_VERSION
 
