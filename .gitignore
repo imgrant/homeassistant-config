@@ -3,11 +3,13 @@
 *
 
 # Whitelist files/folders with !, these will not be ignored.
-!*.yaml
 !.gitignore
 !.github
 !*.md
 !.HA_VERSION
+!esphome
+!**/*.yaml
+!**/*.yml
 
 # Ignore folders.
 .storage
@@ -16,5 +18,5 @@
 
 # Ensure sensitive YAML files _are_ ignored.
 ip_bans.yaml
-secrets.yaml
+**/secrets.yaml
 known_devices.yaml
