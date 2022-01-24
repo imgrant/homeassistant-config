@@ -1,3 +1,4 @@
+---
 esphome:
   name: back-bedroom-sensor
 
@@ -53,4 +54,3 @@ text_sensor:
   - platform: bme680_bsec
     iaq_accuracy:
       name: "Back bedroom IAQ accuracy"
-
