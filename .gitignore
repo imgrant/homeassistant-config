@@ -10,6 +10,7 @@
 !esphome
 !**/*.yaml
 !**/*.yml
+!**/*.yaml.tmpl
 
 # Ignore folders.
 .storage

@@ -51,6 +51,7 @@ jobs:
           esphome version
       - name: Copy secrets.yaml.tmpl into place for secrets.yaml
         run: cp secrets.yaml.tmpl secrets.yaml
+        working_directory: "./esphome"
       - name: 🚀 Run ESPHome config check on all files
         # yamllint disable rule:line-length
         run: |
