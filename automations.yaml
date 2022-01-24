@@ -161,7 +161,7 @@
         media_content_type: music
   mode: single
 - id: hugo_button_4
-  alias: 'Hugo button 1 action'
+  alias: 'Hugo button 4 action'
   description: Play Fun Kids on kitchen speaker
   trigger:
     - platform: device
