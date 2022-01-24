@@ -2,6 +2,7 @@
 - name: "Average indoor temperature"
   platform: min_max
   type: mean
+  round_digits: 2
   entity_ids:
     - sensor.kitchen_temperature
     - sensor.living_room_temperature
@@ -12,6 +13,7 @@
 - name: "Average indoor humidity"
   platform: min_max
   type: mean
+  round_digits: 1
   entity_ids:
     - sensor.front_bedroom_humidity
     - sensor.spare_bedroom_humidity
@@ -19,6 +21,7 @@
 - name: "Average indoor air quality"
   platform: min_max
   type: mean
+  round_digits: 0
   entity_ids:
     - sensor.front_bedroom_indoor_air_quality
     - sensor.spare_bedroom_indoor_air_quality
