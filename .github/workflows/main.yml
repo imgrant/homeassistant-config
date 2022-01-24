@@ -2,6 +2,12 @@
 name: Check HA config
 on:
   pull_request:
+  push:
+    branches:
+      - live
+    paths:
+      - '**.yaml'
+      - '**.yml'
 
 jobs:
   yamllint:
