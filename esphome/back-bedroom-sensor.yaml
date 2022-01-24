@@ -1,0 +1,56 @@
+esphome:
+  name: back-bedroom-sensor
+
+esp8266:
+  board: d1_mini
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: "ba1559cb7c8419e812de67cf65ed1482"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Back-Bedroom-Sensor"
+    password: !secret fallback_hotspot_password
+
+captive_portal:
+
+# Enable I2C interface
+i2c:
+
+# Add proprietary Bosch BSEC library for IAQ
+bme680_bsec:
+  address: 0x77 # Sensor is at alternative I2C address
+
+sensor:
+  - platform: bme680_bsec
+    temperature:
+      name: "Back bedroom temperature"
+      accuracy_decimals: 2
+    pressure:
+      name: "Back bedroom pressure"
+      accuracy_decimals: 1
+    humidity:
+      name: "Back bedroom humidity"
+      accuracy_decimals: 1
+    iaq:
+      name: "Back bedroom indoor air quality"
+    co2_equivalent:
+      name: "Back bedroom CO2 equivalent"
+    breath_voc_equivalent:
+      name: "Back bedroom breath VOC equivalent"
+
+text_sensor:
+  - platform: bme680_bsec
+    iaq_accuracy:
+      name: "Back bedroom IAQ accuracy"
+
