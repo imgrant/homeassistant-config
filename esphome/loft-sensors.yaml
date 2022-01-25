@@ -1,6 +1,14 @@
 ---
 esphome:
   name: loft-sensors
+  includes:
+    - hts221_custom_sensor.h
+  libraries:
+    - "Wire"
+    - "SPI"  # BusIO dependency, even though we're using I2C
+    - "adafruit/Adafruit BusIO"
+    - "adafruit/Adafruit Unified Sensor"
+    - "adafruit/Adafruit HTS221"
 
 esp8266:
   board: d1_mini
@@ -38,7 +46,6 @@ sensor:
     address: 0x35011913ebe7f828
     name: "Outside temperature"
     accuracy_decimals: 2
-    # unit_of_measurement: "°C"
   - platform: dallas
     address: 0x860114327a93a928
     name: "Kitchen temperature"
@@ -63,6 +70,22 @@ sensor:
     accuracy_decimals: 2
     filters:
       - offset: 0.281
+  - platform: custom
+    lambda: |-
+      auto hts221 = new HTS221CustomSensor(15000);
+      App.register_component(hts221);
+      return {hts221->temperature_sensor, hts221->humidity_sensor};
+    sensors:
+      - name: "Loft temperature (HTS221)"
+        unit_of_measurement: "°C"
+        device_class: "temperature"
+        accuracy_decimals: 2
+        filters:
+          - offset: -0.301
+      - name: "Loft humidity (HTS221)"
+        unit_of_measurement: "%"
+        device_class: "humidity"
+        accuracy_decimals: 1
   - platform: tmp117
     name: "Loft temperature (TMP117)"
     accuracy_decimals: 2
