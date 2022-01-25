@@ -1,23 +1,9 @@
-# .gitignore file for Home Assistant config dir.
-# An * ensures that everything will be ignored.
-*
-
-# Whitelist files/folders with !, these will not be ignored.
-!.gitignore
-!.github
-!*.md
-!.HA_VERSION
-!esphome
-!**/*.yaml
-!**/*.yml
-!**/*.yaml.tmpl
-
-# Ignore folders.
+# Ignore folders
 .storage
 .cloud
 .google.token
 
-# Ensure sensitive YAML files _are_ ignored.
+# Ensure sensitive YAML files are ignored
 ip_bans.yaml
 **/secrets.yaml
 known_devices.yaml
