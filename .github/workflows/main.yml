@@ -8,6 +8,7 @@ on:
     paths:
       - '**.yaml'
       - '**.yml'
+      - 'esphome/**/*.h'
 
 jobs:
   yamllint:
