@@ -31,6 +31,22 @@
             timeout: 300
             ttl: 0
     default: []
+  - choose:
+    - conditions:
+      - condition: zone
+        entity_id: person.emily
+        zone: zone.home
+      sequence:
+      - service: notify.mobile_app_emily_s_iphone
+        data:
+          message: There’s someone at the door
+          title: Knock knock!
+          data:
+            group: knock-knock
+            tag: front-door-knock-sensor-triggered
+            push:
+              interruption-level: time-sensitive
+    default: []
   - service: notify.html5notifier
     data:
       message: There’s someone at the door
@@ -52,6 +68,12 @@
         group: knock-knock
         tag: front-door-knock-sensor-triggered
         channel: Knock-knock
+  - service: notify.mobile_app_emily_s_iphone
+    data:
+      message: clear_notification
+      data:
+        group: knock-knock
+        tag: front-door-knock-sensor-triggered
   - service: html5.dismiss
     data:
       data:
