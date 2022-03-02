@@ -30,7 +30,7 @@ i2c:
 
 # Add proprietary Bosch BSEC library for IAQ
 bme680_bsec:
-  address: 0x77 # Sensor is at default I2C address (for Adafruit BME688)
+  address: 0x77   # Sensor is at default I2C address (for Adafruit BME688)
 
 sensor:
   - platform: bme680_bsec

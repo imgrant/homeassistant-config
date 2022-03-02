@@ -30,7 +30,7 @@ i2c:
 
 # Add proprietary Bosch BSEC library for IAQ
 bme680_bsec:
-  address: 0x77 # Sensor is at alternative I2C address
+  address: 0x77   # Sensor is at alternative I2C address
 
 sensor:
   - platform: bme680_bsec
