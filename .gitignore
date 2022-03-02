@@ -9,6 +9,7 @@ html5_push_registrations.conf
 .cloud
 .google.token
 image
+.ssh
 
 # Exclude databases, log files
 home-assistant.log**
