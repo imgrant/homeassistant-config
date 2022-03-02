@@ -317,3 +317,30 @@
       media_content_id: My Live Radio/Heart 90s
       media_content_type: music
   mode: single
+- id: '1643143318465'
+  alias: Certificate renewal
+  description: Start the Let's Encrypt addon to renew the primary SSL/TLS certificate,
+    restart any addons using it
+  trigger:
+  - platform: time
+    at: 03:05
+  condition:
+  - condition: template
+    value_template: '{{as_timestamp(states(''sensor.cert_expiry_timestamp_home_emilyandian_us_8443''))
+      - as_timestamp(now()) < 30 * 24 * 60 * 60}}'
+  action:
+  - service: hassio.addon_start
+    data:
+      addon: core_letsencrypt
+  - delay:
+      hours: 0
+      minutes: 10
+      seconds: 0
+      milliseconds: 0
+  - service: hassio.addon_restart
+    data:
+      addon: core_mosquitto
+  - service: hassio.addon_restart
+    data:
+      addon: a0d7b954_adguard
+  mode: single
