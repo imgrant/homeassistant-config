@@ -1,0 +1,59 @@
+---
+- id: heating_off_when_away
+  alias: Heating away mode
+  description: 'Turn the heating off when no one in the "Everyone" group is at home'
+  trigger:
+    - platform: state
+      entity_id: group.everyone
+      to: not_home
+  condition: []
+  action:
+    - device_id: beb8b66d393ae5c0a5931f4f9b65bb5f
+      domain: climate
+      entity_id: climate.thermostat
+      type: set_hvac_mode
+      hvac_mode: "off"
+  mode: single
+- id: heating_on_when_home
+  alias: Heating home mode
+  description: 'Turn the heating on when someone in the "Everyone" group arrives home'
+  trigger:
+    - platform: state
+      entity_id: group.everyone
+      to: home
+  condition: []
+  action:
+    - device_id: beb8b66d393ae5c0a5931f4f9b65bb5f
+      domain: climate
+      entity_id: climate.thermostat
+      type: set_hvac_mode
+      hvac_mode: "heat"
+  mode: single
+- id: heating_off_overnight
+  alias: Heating overnight schedule
+  description: 'Turn the heating off overnight'
+  trigger:
+    - platform: time
+      at: '23:00:00'
+  condition: []
+  action:
+    - device_id: beb8b66d393ae5c0a5931f4f9b65bb5f
+      domain: climate
+      entity_id: climate.thermostat
+      type: set_hvac_mode
+      hvac_mode: "off"
+  mode: single
+- id: heating_on_morning
+  alias: Heating day schedule
+  description: 'Turn the heating on first thing in the morning'
+  trigger:
+    - platform: time
+      at: '06:45:00'
+  condition: []
+  action:
+    - device_id: beb8b66d393ae5c0a5931f4f9b65bb5f
+      domain: climate
+      entity_id: climate.thermostat
+      type: set_hvac_mode
+      hvac_mode: "heat"
+  mode: single
