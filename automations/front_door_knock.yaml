@@ -10,9 +10,24 @@
       domain: binary_sensor
   condition:
     - condition: time
-      after: 06:00
-      before: "22:00"
+      after: '06:00:00'
+      before: '22:00:00'
+    - condition: device
+      type: is_not_open
+      device_id: f9b00b200a76c82c8f795acfd5a5aaf3
+      entity_id: binary_sensor.front_door_sensor_ias_zone
+      domain: binary_sensor
   action:
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 0
+        milliseconds: 500
+    - condition: device
+      type: is_not_open
+      device_id: f9b00b200a76c82c8f795acfd5a5aaf3
+      entity_id: binary_sensor.front_door_sensor_ias_zone
+      domain: binary_sensor
     - choose:
         - conditions:
             - condition: zone
@@ -31,6 +46,15 @@
                   priority: high
                   timeout: 300
                   ttl: 0
+            - service: notify.html5notifier
+              data:
+                message: There’s someone at the door
+                title: Knock knock!
+                target: XPS13
+                data:
+                  tag: front-door-knock-sensor-triggered
+                  priority: high
+                  ttl: 180
       default: []
     - choose:
         - conditions:
@@ -48,14 +72,6 @@
                   push:
                     interruption-level: time-sensitive
       default: []
-    - service: notify.html5notifier
-      data:
-        message: There’s someone at the door
-        title: Knock knock!
-        data:
-          tag: front-door-knock-sensor-triggered
-          priority: high
-          ttl: 180
     - delay:
         hours: 0
         minutes: 3
