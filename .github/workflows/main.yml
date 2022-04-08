@@ -23,7 +23,7 @@ jobs:
       - run: echo ${{ steps.yaml-lint.outputs.logfile }}
       - id: upload
         name: ⤴️ Upload results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: always()
         with:
           name: yamllint-logfile
